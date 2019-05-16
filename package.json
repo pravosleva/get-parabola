@@ -29,7 +29,11 @@
     "points",
     "math",
     "mathematical",
-    "function"
+    "function",
+    "least",
+    "squares",
+    "approximation",
+    "approximate"
   ],
   "author": "Dinesh Pandiyan <flexdinesh@gmail.com>",
   "license": "MIT",
