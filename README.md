@@ -1,20 +1,52 @@
-# Get Parabola
+# get-parabola
 
-Quadratic function coeffs by three points.
-For math function like `(a * (x ** 2)) + (b * x) + c`.
+This module was created to have ability to receive coeffs for the condition like `(a * (x ** 2)) + (b * x) + c` for the different cases.
+
+## Install
+
+```
+$ yarn add get-parabola
+```
 
 ## Usage
 
-```javascript
-import { getQuadraticCoefficients } from 'get-parabola';
+Could be imported like this:
 
-const coeffs = getQuadraticCoefficients({
+```javascript
+import getQuadraticFitCoefficients from 'get-parabola';
+```
+
+### 1. By three points
+
+```javascript
+const coeffs = getQuadraticFitCoefficients.by3Points({
   x1: 1, y1: 1,
   x2: 2, y2: 4,
   x3: 3, y3: 9,
 });
 
-console.log(coeffs); // { a: 1, b: 0, c: 0 }
+console.log(coeffs);
+// { a: 1, b: 0, c: 0 }
+```
+
+### 2. By least squares approximation
+
+```javascript
+const coeffs = getQuadraticFitCoefficients.byLeastSquaresApproximation([
+  { x: 4, y: 4 },
+  { x: 5, y: 5 },
+  { x: 6, y: 6 },
+  { x: 10, y: 7 },
+  { x: 12, y: 8 },
+  { x: 15, y: 9 },
+]);
+
+console.log(coeffs);
+// {
+//   a: -0.015889095754389806,
+//   b: 0.7155842733545066,
+//   c: 1.744177344577082,
+// }
 ```
 
 ## Commands
