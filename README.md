@@ -10,10 +10,11 @@ $ yarn add get-parabola
 
 ## Usage
 
-Could be imported like this:
-
 ```javascript
 import getQuadraticFitCoefficients from 'get-parabola';
+
+// Or any separate method of the class if necessary:
+import { by3Points } from 'get-parabola';
 ```
 
 ### 1. By three points
