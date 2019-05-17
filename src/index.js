@@ -1,15 +1,24 @@
-/* eslint-disable no-mixed-operators, max-len, operator-assignment, no-plusplus */
+/* eslint-disable no-mixed-operators, max-len, operator-assignment, no-plusplus, object-curly-newline */
 export default class getQuadraticFitCoefficients {
   static by3Points({
     x1, y1,
     x2, y2,
     x3, y3,
   }) {
-    const a = (y1 * (x2 - x3) + y2 * (x3 - x1) + y3 * (x1 - x2)) / ((x1 - x2) * (x2 - x3) * (x1 - x3));
-    const b = (y1 - y2 - a * ((x1 ** 2) - (x2 ** 2))) / (x1 - x2);
-    const c = y1 - a * (x1 ** 2) - b * x1;
+    let a = null;
+    let b = null;
+    let c = null;
+    let error = null;
 
-    return { a, b, c };
+    if (x1 === x2 || x2 === x3 || x3 === x1) {
+      error = 'Указанные точки не для квадратичной функции!';
+    } else {
+      a = (y1 * (x2 - x3) + y2 * (x3 - x1) + y3 * (x1 - x2)) / ((x1 - x2) * (x2 - x3) * (x1 - x3));
+      b = (y1 - y2 - a * ((x1 ** 2) - (x2 ** 2))) / (x1 - x2);
+      c = y1 - a * (x1 ** 2) - b * x1;
+    }
+
+    return { a, b, c, error };
   }
 
   static byLeastSquaresApproximation(coordinatesArray) {

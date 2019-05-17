@@ -1,6 +1,6 @@
 # get-parabola
 
-This module was created to have ability to receive coeffs for the condition like `(a * (x ** 2)) + (b * x) + c` for the different cases.
+This module was created to have ability to receive coeffs for the condition like `a*x^2 + bx + c` for the different cases.
 
 ## Install
 
@@ -26,7 +26,8 @@ const coeffs = getQuadraticFitCoefficients.by3Points({
 });
 
 console.log(coeffs);
-// { a: 1, b: 0, c: 0 }
+// { a: 1, b: 0, c: 0, error: null }
+// But coeffs.error could be string as explanation, check it before using coeffs object.
 ```
 
 ### 2. By least squares approximation
