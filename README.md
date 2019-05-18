@@ -17,7 +17,7 @@ import getQuadraticFitCoefficients from 'get-parabola';
 import { by3Points } from 'get-parabola';
 ```
 
-_So, you can use methods below:_
+_So, you can use methods below_
 
 - [by3Points](#by3Points)
 - [byLeastSquaresApproximation](#byLeastSquaresApproximation)
