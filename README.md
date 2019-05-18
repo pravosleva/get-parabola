@@ -1,6 +1,6 @@
 # get-parabola
 
-This module was created to have ability to receive coeffs for the condition like `a*x^2 + bx + c` for the different cases.
+This module was created for have ability to receive quadratic fit coeffs for the condition like `a*x^2 + bx + c` by different ways.
 
 ## Install
 
@@ -17,7 +17,12 @@ import getQuadraticFitCoefficients from 'get-parabola';
 import { by3Points } from 'get-parabola';
 ```
 
-### 1. By three points
+_So, you can use methods below:_
+
+- [by3Points](#by3Points)
+- [byLeastSquaresApproximation](#byLeastSquaresApproximation)
+
+### by3Points
 
 ```javascript
 const coeffs = getQuadraticFitCoefficients.by3Points({
@@ -28,10 +33,10 @@ const coeffs = getQuadraticFitCoefficients.by3Points({
 
 console.log(coeffs);
 // { a: 1, b: 0, c: 0, error: null }
-// But coeffs.error could be string as explanation, check it before using coeffs object.
+// But coeffs.error could be string as explanation, check this field before using result object.
 ```
 
-### 2. By least squares approximation
+### byLeastSquaresApproximation
 
 ```javascript
 const coeffs = getQuadraticFitCoefficients.byLeastSquaresApproximation([
