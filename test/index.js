@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import Immutable from 'immutable';
-import getQuadraticFitCoefficients, { by3Points, byLeastSquaresApproximation } from '../src';
+import { by3Points, byLeastSquaresApproximation } from '../src';
 
 describe('Awesome test.', () => {
   it('1.1 by3Points() isn\'t in same line', () => {
@@ -18,7 +18,7 @@ describe('Awesome test.', () => {
   });
 
   it('1.2 by3Points() x1 === x2; result.error is string', () => {
-    const expectedObj = Immutable.Map({ a: null, b: null, c: null, error: 'Указанные точки не для квадратичной функции!' });
+    const expectedObj = Immutable.Map({ a: null, b: null, c: null, error: 'Impossible / Указанные точки не для квадратичной функции!' });
     const testObj = Immutable.Map(by3Points({
       x1: 1, y1: 1,
       x2: 1, y2: 4,

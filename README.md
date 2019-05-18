@@ -11,7 +11,7 @@ $ yarn add get-parabola
 ## Usage
 
 ```javascript
-import getQuadraticFitCoefficients from 'get-parabola';
+import GetQuadraticFitCoefficients from 'get-parabola';
 
 // Or any separate method of the class if necessary:
 import { by3Points } from 'get-parabola';
@@ -21,11 +21,12 @@ _So, you can use methods below_
 
 - [by3Points](#by3Points)
 - [byLeastSquaresApproximation](#byLeastSquaresApproximation)
+- _Others in process..._
 
 ### by3Points
 
 ```javascript
-const coeffs = getQuadraticFitCoefficients.by3Points({
+const coeffs = GetQuadraticFitCoefficients.by3Points({
   x1: 1, y1: 1,
   x2: 2, y2: 4,
   x3: 3, y3: 9,
@@ -39,7 +40,7 @@ console.log(coeffs);
 ### byLeastSquaresApproximation
 
 ```javascript
-const coeffs = getQuadraticFitCoefficients.byLeastSquaresApproximation([
+const coeffs = GetQuadraticFitCoefficients.byLeastSquaresApproximation([
   { x: 4, y: 4 },
   { x: 5, y: 5 },
   { x: 6, y: 6 },
