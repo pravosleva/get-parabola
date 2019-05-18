@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-// const GetQuadraticFitCoefficients = require('../lib').default;
+// const QuadraticFitCoefficients = require('../lib').default;
 const { by3Points } = require('../lib');
 
-// const defaultVal = GetQuadraticFitCoefficients('Thanx to Dinesh');
+// const defaultVal = QuadraticFitCoefficients('Thanx to Dinesh');
 const val = by3Points({
   x1: 1, y1: 1,
   x2: 2, y2: 4,

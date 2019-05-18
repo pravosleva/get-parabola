@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-operators, max-len, operator-assignment, no-plusplus, object-curly-newline */
-export default class GetQuadraticFitCoefficients {
+export default class QuadraticFitCoefficients {
   static by3Points({
     x1, y1,
     x2, y2,
