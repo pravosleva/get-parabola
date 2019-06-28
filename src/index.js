@@ -1,14 +1,92 @@
-/* eslint-disable no-mixed-operators, max-len, operator-assignment, no-plusplus, object-curly-newline */
+/* eslint-disable no-mixed-operators, max-len, operator-assignment, no-plusplus, object-curly-newline, prefer-destructuring, arrow-parens */
 export default class QuadraticFitCoefficients {
-  static by3Points({
-    x1, y1,
-    x2, y2,
-    x3, y3,
-  }) {
+  static by3Points(arg) {
+    let x1;
+    let x2;
+    let x3;
+    let y1;
+    let y2;
+    let y3;
+
     let a = null;
     let b = null;
     let c = null;
     let error = null;
+
+    // Errs
+    const requiredFields0 = ['x', 'y'];
+    const checkPoints = arr => {
+      const results = [];
+
+      arr.map(p => {
+        const keys = Object.keys(p);
+
+        for (let j = 0; j < requiredFields0.length; j++) {
+          if (keys.includes(requiredFields0[j])) {
+            results.push(true);
+          } else {
+            results.push(false);
+          }
+        }
+
+        return false;
+      });
+
+      return !results.includes(false);
+    };
+    const requiredFields1 = ['x1', 'x2', 'x3', 'y1', 'y2', 'y3'];
+    const checkObj = obj => {
+      const results = [];
+      const keys = Object.keys(obj);
+
+      for (let i = 0; i < requiredFields1.length; i++) {
+        if (keys.includes(requiredFields1[i])) {
+          results.push(true);
+        } else {
+          results.push(false);
+        }
+      }
+
+      return !results.includes(false);
+    };
+
+    if (Array.isArray(arg)) {
+      if (!checkPoints(arg)) {
+        return { error: 'FUCKUP! Каких-то полей не хватает =)' };
+      }
+
+      arg.map((p, i) => {
+        switch (i) {
+          case 0:
+            x1 = p.x;
+            y1 = p.y;
+            break;
+          case 1:
+            x2 = p.x;
+            y2 = p.y;
+            break;
+          case 2:
+            x3 = p.x;
+            y3 = p.y;
+            break;
+          default:
+            break;
+        }
+
+        return false;
+      });
+    } else {
+      if (!checkObj(arg)) {
+        return { error: 'FUCKUP! Каких-то полей не хватает =)' };
+      }
+
+      x1 = arg.x1;
+      y1 = arg.y1;
+      x2 = arg.x2;
+      y2 = arg.y2;
+      x3 = arg.x3;
+      y3 = arg.y3;
+    }
 
     if (x1 === x2 || x2 === x3 || x3 === x1) {
       error = 'Impossible / Указанные точки не для квадратичной функции!';

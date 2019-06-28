@@ -32,6 +32,14 @@ const coeffs = QuadraticFitCoefficients.by3Points({
   x3: 3, y3: 9,
 });
 
+// And argument could be an Array like [{ x, y }] (but 3 points!)
+
+const coeffs2 = QuadraticFitCoefficients.by3Points([
+  { x: 1, y: 1 },
+  { x: 2, y: 4 },
+  { x: 3, y: 9 },
+]);
+
 console.log(coeffs);
 // { a: 1, b: 0, c: 0, error: null }
 // But coeffs.error could be string as explanation, check this field before using result object.

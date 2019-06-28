@@ -45,6 +45,47 @@ describe('Awesome test.', () => {
     );
   });
 
+  // by3Points2
+  it('1.4 by3Points() as Array', () => {
+    const expectedObj = Immutable.Map({ a: 1, b: 0, c: 0, error: null });
+    const testObj = Immutable.Map(by3Points([
+      { x: 1, y: 1 },
+      { x: 2, y: 4 },
+      { x: 3, y: 9 },
+    ]));
+
+    assert(
+      testObj.equals(expectedObj),
+      `FuckUp :( ${JSON.stringify(testObj)}`,
+    );
+  });
+
+  it('1.5 by3Points() in line', () => {
+    const testObj = by3Points([
+      { x: 1, y: 1 },
+      { x: 1, y: 2 },
+      { x: 3, y: 9 },
+    ]);
+
+    assert(
+      typeof testObj.error === 'string',
+      `FuckUp :( ${JSON.stringify(testObj)}`,
+    );
+  });
+
+  it('1.6 by3Points() no x1', () => {
+    const testObj = by3Points([
+      { y: 1 },
+      { x: 1, y: 2 },
+      { x: 3, y: 9 },
+    ]);
+
+    assert(
+      typeof testObj.error === 'string',
+      `FuckUp :( ${JSON.stringify(testObj)}`,
+    );
+  });
+
   it('2. byLeastSquaresApproximation()', () => {
     const expectedObj = Immutable.Map({
       a: -0.015889095754389806,
