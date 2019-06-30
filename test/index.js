@@ -1,6 +1,11 @@
 import { assert } from 'chai';
 import Immutable from 'immutable';
-import { by3Points, byLeastSquaresApproximation } from '../src';
+import {
+  by2Points,
+  by3Points,
+  byLeastSquaresApproximation,
+  getBrokenLineByPoints
+} from '../src';
 
 describe('Awesome test.', () => {
   it('1.1 by3Points() isn\'t in same line', () => {
@@ -106,6 +111,38 @@ describe('Awesome test.', () => {
     assert(
       testedObj.equals(expectedObj),
       `FuckUp! coeffs is ${JSON.stringify(coeffs)}`,
+    );
+  });
+
+  it('3 by2Points()', () => {
+    const coeffs = by2Points([
+      { x: 1, y: 1 },
+      { x: 2, y: 2 },
+    ]);
+    const expectedObj = Immutable.Map({ k: 1, b: 0 });
+    const testedObj = Immutable.Map(coeffs);
+
+    assert(
+      testedObj.equals(expectedObj),
+      `FuckUp :( ${JSON.stringify(coeffs)}`,
+    );
+  });
+
+  it('4 getBrokenLineByPoints()', () => {
+    const lineFn = getBrokenLineByPoints([
+      { x: 4, y: 4 },
+      { x: 5, y: 5 },
+      { x: 6, y: 6 },
+      { x: 10, y: 7 },
+      { x: 12, y: 8 },
+      { x: 15, y: 9 },
+    ]);
+    const expectedVal = 12;
+    const testedVal = lineFn(24);
+
+    assert(
+      testedVal === expectedVal,
+      `FuckUp :( testedVal is ${testedVal}`,
     );
   });
 });

@@ -1,5 +1,18 @@
 /* eslint-disable no-mixed-operators, max-len, operator-assignment, no-plusplus, object-curly-newline, prefer-destructuring, arrow-parens */
-export default class QuadraticFitCoefficients {
+import { getKB, linear } from 'interpolate-by-pravosleva';
+
+
+export default class Coeffs {
+  static by2Points(points) {
+    const getNormalized2Points = (arr) => {
+      const [p1, p2] = arr;
+
+      return { x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y };
+    };
+
+    return getKB(getNormalized2Points(points));
+  }
+
   static by3Points(arg) {
     let x1;
     let x2;
@@ -132,5 +145,40 @@ export default class QuadraticFitCoefficients {
     const c = (z[0][3] - a * z[0][0] - b * z[0][1]) / z[0][2];
 
     return { a, b, c };
+  }
+
+  static getBrokenLineByPoints(points) {
+    const sortedPoints = [...points].sort((p1, p2) => p1.x - p2.x);
+
+    return h => {
+      let x1;
+      let x2;
+      let y1;
+      let y2;
+
+      if (h <= sortedPoints[0].x) {
+        x1 = sortedPoints[0].x;
+        x2 = sortedPoints[1].x;
+        y1 = sortedPoints[0].y;
+        y2 = sortedPoints[1].y;
+      } else if (h >= sortedPoints[sortedPoints.length - 1].x) {
+        x1 = sortedPoints[sortedPoints.length - 2].x;
+        x2 = sortedPoints[sortedPoints.length - 1].x;
+        y1 = sortedPoints[sortedPoints.length - 2].y;
+        y2 = sortedPoints[sortedPoints.length - 1].y;
+      } else {
+        for (let i = 0; i < sortedPoints.length - 1; i++) {
+          if (h >= sortedPoints[i].x && h <= sortedPoints[i + 1].x) {
+            x1 = sortedPoints[i].x;
+            x2 = sortedPoints[i + 1].x;
+            y1 = sortedPoints[i].y;
+            y2 = sortedPoints[i + 1].y;
+            break;
+          }
+        }
+      }
+
+      return linear({ x: h, x1, y1, x2, y2 });
+    };
   }
 }

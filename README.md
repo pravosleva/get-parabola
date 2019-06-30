@@ -11,44 +11,57 @@ $ yarn add get-parabola
 ## Usage
 
 ```javascript
-import QuadraticFitCoefficients from 'get-parabola';
+import Coeffs from 'get-parabola';
 
 // Or any separate method of the class if necessary:
-import { by3Points } from 'get-parabola';
+import { by2Points } from 'get-parabola';
 ```
 
 _So, you can use methods below_
 
+- [by2Points](#by2Points) // Прямая как частный случай параболы
 - [by3Points](#by3Points)
 - [byLeastSquaresApproximation](#byLeastSquaresApproximation)
-- _Others in process..._
+- [getBrokenLineByPoints](#getBrokenLineByPoints)
+
+### by2Points
+
+```javascript
+const coeffs = Coeffs.by2Points([
+  { x: 1, y: 1 },
+  { x: 2, y: 2 }
+]);
+
+console.log(coeffs);
+// { k: 1, b: 0 }
+```
 
 ### by3Points
 
 ```javascript
-const coeffs = QuadraticFitCoefficients.by3Points({
+// CASE 1:
+const coeffs = Coeffs.by3Points({
   x1: 1, y1: 1,
   x2: 2, y2: 4,
   x3: 3, y3: 9,
 });
 
-// And argument could be an Array like [{ x, y }] (but 3 points!)
+console.log(coeffs);
+// { a: 1, b: 0, c: 0, error: null }
+// But coeffs.error could be string as explanation, check !coeffs.error before using result object.
 
-const coeffs2 = QuadraticFitCoefficients.by3Points([
+// CASE 2: And argument could be an Array like [{ x, y }] (but 3 points!)
+const coeffs2 = Coeffs.by3Points([
   { x: 1, y: 1 },
   { x: 2, y: 4 },
   { x: 3, y: 9 },
 ]);
-
-console.log(coeffs);
-// { a: 1, b: 0, c: 0, error: null }
-// But coeffs.error could be string as explanation, check this field before using result object.
 ```
 
 ### byLeastSquaresApproximation
 
 ```javascript
-const coeffs = QuadraticFitCoefficients.byLeastSquaresApproximation([
+const coeffs = Coeffs.byLeastSquaresApproximation([
   { x: 4, y: 4 },
   { x: 5, y: 5 },
   { x: 6, y: 6 },
@@ -63,6 +76,24 @@ console.log(coeffs);
 //   b: 0.7155842733545066,
 //   c: 1.744177344577082,
 // }
+```
+
+### getBrokenLineByPoints
+
+```javascript
+const lineFn = Coeffs.getBrokenLineByPoints([
+  { x: 4, y: 4 },
+  { x: 5, y: 5 },
+  { x: 6, y: 6 },
+  { x: 10, y: 7 },
+  { x: 12, y: 8 },
+  { x: 15, y: 9 },
+]);
+
+console.log(lineFn(24));
+// 12
+// This function gives result in lines between your points or interpolate in
+// external cases
 ```
 
 ## Commands
