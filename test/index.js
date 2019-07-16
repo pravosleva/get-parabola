@@ -2,7 +2,9 @@ import { assert } from 'chai';
 import Immutable from 'immutable';
 import {
   by2Points,
+  getLineBy2Points,
   by3Points,
+  getLineBy3Points,
   byLeastSquaresApproximation,
   getBrokenLineByPoints
 } from '../src';
@@ -143,6 +145,37 @@ describe('Awesome test.', () => {
     assert(
       testedVal === expectedVal,
       `FuckUp :( testedVal is ${testedVal}`,
+    );
+  });
+
+  it('5 getLineBy2Points()', () => {
+    const points = [
+      { x: 1, y: 1 },
+      { x: 2, y: 2 },
+    ];
+    const lineFn = getLineBy2Points(points);
+    const expectedVal = 5;
+    const testedVal = lineFn(5);
+
+    assert(
+      testedVal === expectedVal,
+      `FuckUp :( testedVal is ${JSON.stringify(testedVal)}`,
+    );
+  });
+
+  it('6 getLineBy3Points()', () => {
+    const points = [
+      { x: 1, y: 1 },
+      { x: 2, y: 4 },
+      { x: 3, y: 9 },
+    ];
+    const lineFn = getLineBy3Points(points);
+    const expectedVal = 25;
+    const testedVal = lineFn(5);
+
+    assert(
+      testedVal === expectedVal,
+      `FuckUp :( testedVal is ${JSON.stringify(testedVal)}`,
     );
   });
 });

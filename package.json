@@ -1,6 +1,6 @@
 {
   "name": "get-parabola",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Quadratic function coeffs by different ways.",
   "main": "./lib/index.js",
   "scripts": {

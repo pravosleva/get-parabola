@@ -19,10 +19,12 @@ import { by2Points } from 'get-parabola';
 
 _So, you can use methods below_
 
-- [by2Points](#by2Points) // Прямая как частный случай параболы
-- [by3Points](#by3Points)
-- [byLeastSquaresApproximation](#byLeastSquaresApproximation)
-- [getBrokenLineByPoints](#getBrokenLineByPoints)
+- [by2Points](#by2Points) // object like `({ k, b })`
+- [getLineBy2Points](#getLineBy2Points) // function like `x => number`
+- [by3Points](#by3Points) // object like `({ a, b, c, error: string|null })`
+- [getLineBy3Points](#getLineBy3Points) // function like `x => number` or null
+- [byLeastSquaresApproximation](#byLeastSquaresApproximation) // object like `({ a, b, c })`
+- [getBrokenLineByPoints](#getBrokenLineByPoints) // function like `x => number`
 
 ### by2Points
 
@@ -34,6 +36,18 @@ const coeffs = Coeffs.by2Points([
 
 console.log(coeffs);
 // { k: 1, b: 0 }
+```
+
+### getLineBy2Points
+
+```javascript
+const lineFn = Coeffs.getLineBy2Points([
+  { x: 1, y: 1 },
+  { x: 2, y: 2 },
+]);
+
+console.log(lineFn(5));
+// 5
 ```
 
 ### by3Points
@@ -56,6 +70,19 @@ const coeffs2 = Coeffs.by3Points([
   { x: 2, y: 4 },
   { x: 3, y: 9 },
 ]);
+```
+
+### getLineBy3Points
+
+```javascript
+const lineFn = Coeffs.getLineBy3Points([
+  { x: 1, y: 1 },
+  { x: 2, y: 4 },
+  { x: 3, y: 9 },
+]);
+
+console.log(lineFn(5));
+// 25
 ```
 
 ### byLeastSquaresApproximation

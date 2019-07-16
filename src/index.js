@@ -2,15 +2,21 @@
 import { getKB, linear } from 'interpolate-by-pravosleva';
 
 
+const getNormalized2Points = (arr) => {
+  const [p1, p2] = arr;
+
+  return { x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y };
+};
+
 export default class Coeffs {
   static by2Points(points) {
-    const getNormalized2Points = (arr) => {
-      const [p1, p2] = arr;
-
-      return { x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y };
-    };
-
     return getKB(getNormalized2Points(points));
+  }
+
+  static getLineBy2Points(points) {
+    const { k, b } = Coeffs.by2Points(points);
+
+    return x => (k * x) + b;
   }
 
   static by3Points(arg) {
@@ -110,6 +116,17 @@ export default class Coeffs {
     }
 
     return { a, b, c, error };
+  }
+
+  static getLineBy3Points(points) {
+    const coeffs = Coeffs.by3Points(points);
+    const { error, a, b, c } = coeffs;
+
+    if (!error) {
+      return x => (a * x * x) + (b * x) + c;
+    }
+
+    return null;
   }
 
   static byLeastSquaresApproximation(coordinatesArray) {
