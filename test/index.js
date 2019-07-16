@@ -6,6 +6,7 @@ import {
   by3Points,
   getLineBy3Points,
   byLeastSquaresApproximation,
+  getLineByLeastSquaresApproximation,
   getBrokenLineByPoints
 } from '../src';
 
@@ -171,6 +172,24 @@ describe('Awesome test.', () => {
     ];
     const lineFn = getLineBy3Points(points);
     const expectedVal = 25;
+    const testedVal = lineFn(5);
+
+    assert(
+      testedVal === expectedVal,
+      `FuckUp :( testedVal is ${JSON.stringify(testedVal)}`,
+    );
+  });
+
+  it('7 getLineByLeastSquaresApproximation()', () => {
+    const lineFn = getLineByLeastSquaresApproximation([
+      { x: 4, y: 4 },
+      { x: 5, y: 5 },
+      { x: 6, y: 6 },
+      { x: 10, y: 7 },
+      { x: 12, y: 8 },
+      { x: 15, y: 9 },
+    ]);
+    const expectedVal = 4.92487131748987;
     const testedVal = lineFn(5);
 
     assert(

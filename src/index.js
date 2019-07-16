@@ -164,6 +164,13 @@ export default class Coeffs {
     return { a, b, c };
   }
 
+  static getLineByLeastSquaresApproximation(points) {
+    const coeffs = Coeffs.byLeastSquaresApproximation(points);
+    const { a, b, c } = coeffs;
+
+    return x => (a * x * x) + (b * x) + c;
+  }
+
   static getBrokenLineByPoints(points) {
     const sortedPoints = [...points].sort((p1, p2) => p1.x - p2.x);
 
